@@ -15,7 +15,7 @@ public class Landscape extends Canvas {
     public static void main(String[] args) {
         int width = 800;
         int height = 600;
-        JFrame frame = new JFrame("Landscape");
+        JFrame frame = new JFrame("Landscape Generator");
         Landscape landscape = new Landscape(width, height);
         landscape.setSize(width, height);
         frame.add(landscape);
