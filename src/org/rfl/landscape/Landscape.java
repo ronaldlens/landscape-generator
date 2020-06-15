@@ -168,6 +168,13 @@ public class Landscape extends Canvas {
         g.drawPolygon(xcoords, ycoords, 4);
     }
 
+    private void fillPolygon(Graphics g, Color c, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+        int[] xcoords = {x1, x2, x3, x4};
+        int[] ycoords = {y1, y2, y3, y4};
+        g.setColor(c);
+        g.fillPolygon(xcoords, ycoords, 4);
+    }
+
     public void paint(Graphics g) {
         int[][] board = generateMiles();
 
@@ -187,10 +194,16 @@ public class Landscape extends Canvas {
             }
         }
 
+        Color c;
+
         for (int z = 0; z < sizez - 1; z++) {
             for (int x = 0; x < sizex - 1; x++) {
-
-                drawPolygon(g,
+                if ((x+z) % 2 == 0) {
+                    c = Color.cyan;
+                } else {
+                    c = Color.RED;
+                }
+                fillPolygon(g, c,
                         xcoords[x][z], ycoords[x][z],
                         xcoords[x + 1][z], ycoords[x + 1][z],
                         xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
