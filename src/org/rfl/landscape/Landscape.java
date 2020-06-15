@@ -122,21 +122,6 @@ public class Landscape extends Canvas {
 //                board[row][col] = average;
 //            }
 //        } //smooths out edges even more
-//        for (int row = 1; row < 10; row++){
-//            for (int col = 1; col < sizex-1; col++){
-//                point1 = board[row][col];
-//                point2 = board[row - 1][col];
-//                point3 = board[row - 1][col + 1];
-//                point4 = board[row][col + 1];
-//                point5 = board[row + 1][col + 1];
-//                point6 = board[row + 1][col];
-//                point7 = board[row + 1][col - 1];
-//                point8 = board[row][col - 1];
-//                point9 = board[row - 1][col - 1];
-//                average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
-//                board[row][col] = average;
-//            }
-//        } //smooths out edges even more
 //        for (int row = 1; row < sizex-1; row++){
 //            for (int col = sizex-9; col < sizex-1; col++){
 //                point1 = board[row][col];
@@ -152,6 +137,8 @@ public class Landscape extends Canvas {
 //                board[row][col] = average;
 //            }
 //        } //smooths out edges even more
+
+        // if board below 0, it's water so set it to 0
         for (int row = 1; row < sizex-1; row++) {
             for (int col = 1; col < sizex-1; col++) {
                 if (board[row][col]<0) board[row][col]=0;
@@ -203,6 +190,11 @@ public class Landscape extends Canvas {
                 } else {
                     c = Color.RED;
                 }
+//                drawPolygon(g,
+//                        xcoords[x][z], ycoords[x][z],
+//                        xcoords[x + 1][z], ycoords[x + 1][z],
+//                        xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
+//                        xcoords[x][z + 1], ycoords[x][z + 1]);
                 fillPolygon(g, c,
                         xcoords[x][z], ycoords[x][z],
                         xcoords[x + 1][z], ycoords[x + 1][z],
