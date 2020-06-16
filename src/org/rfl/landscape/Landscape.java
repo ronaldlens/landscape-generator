@@ -12,6 +12,14 @@ public class Landscape extends Canvas {
     int sizex = 50;
     int sizez = 50;
 
+    public Landscape(int width, int height) {
+        super();
+        this.width = width;
+        this.height = height;
+
+
+    }
+
     public static void main(String[] args) {
         int width = 800;
         int height = 600;
@@ -35,12 +43,6 @@ public class Landscape extends Canvas {
 
     }
 
-    public Landscape(int width, int height) {
-        super();
-        this.width = width;
-        this.height = height;
-    }
-
     public int[][] generateMiles() {
         int[][] startboard = new int[sizex][sizex];
         int[][] board = new int[sizex][sizex];
@@ -61,22 +63,22 @@ public class Landscape extends Canvas {
             startboard[0][col] = 0;
         }
         for (int row = 0; row < sizex; row++) {
-            startboard[row][sizex-1] = 0;
+            startboard[row][sizex - 1] = 0;
         }
         for (int col = 0; col < sizex; col++) {
-            startboard[sizex-1][col] = 0;
+            startboard[sizex - 1][col] = 0;
         } //makes edge of zeros
 
 
-        for (int row = 1; row <= sizex-1; row++) {
-            for (int col = 1; col <= sizex-1; col++) {
-                startboard[row][col] = (int) ((200-row*3) * Math.random()-50);
+        for (int row = 1; row <= sizex - 1; row++) {
+            for (int col = 1; col <= sizex - 1; col++) {
+                startboard[row][col] = (int) ((200 - row * 3) * Math.random() - 50);
             }
         } // makes first board
 
-        for (int smooth=0; smooth<7; smooth++) {
-            for (int row = 1; row < sizex-1; row++) {
-                for (int col = 1; col < sizex-1; col++) {
+        for (int smooth = 0; smooth < 7; smooth++) {
+            for (int row = 1; row < sizex - 1; row++) {
+                for (int col = 1; col < sizex - 1; col++) {
                     point1 = startboard[row][col];
                     point2 = startboard[row - 1][col];
                     point3 = startboard[row - 1][col + 1];
@@ -86,7 +88,7 @@ public class Landscape extends Canvas {
                     point7 = startboard[row + 1][col - 1];
                     point8 = startboard[row][col - 1];
                     point9 = startboard[row - 1][col - 1];
-                    average = (point1+  point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
+                    average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
                     board[row][col] = average;
                 }
             } //smooths out board
@@ -139,14 +141,13 @@ public class Landscape extends Canvas {
 //        } //smooths out edges even more
 
         // if board below 0, it's water so set it to 0
-        for (int row = 1; row < sizex-1; row++) {
-            for (int col = 1; col < sizex-1; col++) {
-                if (board[row][col]<0) board[row][col]=0;
+        for (int row = 1; row < sizex - 1; row++) {
+            for (int col = 1; col < sizex - 1; col++) {
+                if (board[row][col] < 0) board[row][col] = 0;
             }
         }
         return board;
     }
-
 
 
     private void drawPolygon(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
@@ -181,28 +182,45 @@ public class Landscape extends Canvas {
             }
         }
 
-        Color c;
+        Color c = Color.white;
 
         for (int z = 0; z < sizez - 1; z++) {
             for (int x = 0; x < sizex - 1; x++) {
-                if ((x+z) % 2 == 0) {
-                    c = Color.cyan;
-                } else {
-                    c = Color.RED;
+                for (int count = 0; count < 1; count++) {
+                    if (board[x][z] >= 90) {
+                        c = Color.white;
+                    } else if ((board[x][z] >= 50) && (board[x][z] < 90)) {
+                        c = Color.lightGray;
+                    } else if ((board[x][z] >= 5) && (board[x][z] < 50)) {
+                        c = Color.green;
+                    } else if ((board[x][z] > 0) && (board[x][z] > 5)) {
+                        c = Color.yellow;
+                    } else if (board[x][z] == 0) {
+                        c = Color.blue;
+                    }
                 }
-//                drawPolygon(g,
-//                        xcoords[x][z], ycoords[x][z],
-//                        xcoords[x + 1][z], ycoords[x + 1][z],
-//                        xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
-//                        xcoords[x][z + 1], ycoords[x][z + 1]);
+//                if ((x+z) % 2 == 0) {
+//                    c = Color.cyan;
+//                } else {
+//                    c = Color.RED;
+//
+//                }
+
+
                 fillPolygon(g, c,
                         xcoords[x][z], ycoords[x][z],
                         xcoords[x + 1][z], ycoords[x + 1][z],
                         xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
                         xcoords[x][z + 1], ycoords[x][z + 1]);
+//                        xcoords[x][z], ycoords[x][z],
+//                        xcoords[x + 1][z], ycoords[x + 1][z],
+//                        xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
+//                        xcoords[x][z + 1], ycoords[x][z + 1]);
             }
+
         }
     }
-
-
 }
+
+
+
