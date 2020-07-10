@@ -44,7 +44,7 @@ public class Landscape extends Canvas {
     }
 
     public int[][] generateMiles() {
-        int[][] startboard = new int[sizex][sizex];
+        //int[][] startboard = new int[sizex][sizex];
         int[][] board = new int[sizex][sizex];
         int point1;
         int point2;
@@ -56,89 +56,54 @@ public class Landscape extends Canvas {
         int point8;
         int point9;
         int average;
-        for (int row = 0; row < sizex; row++) {
-            startboard[row][0] = 0;
-        }
-        for (int col = 0; col < sizex; col++) {
-            startboard[0][col] = 0;
-        }
-        for (int row = 0; row < sizex; row++) {
-            startboard[row][sizex - 1] = 0;
-        }
-        for (int col = 0; col < sizex; col++) {
-            startboard[sizex - 1][col] = 0;
-        } //makes edge of zeros
+//        for (int row = 0; row < sizex; row++) {
+//            startboard[row][0] = 0;
+//        }
+//        for (int col = 0; col < sizex; col++) {
+//            startboard[0][col] = 0;
+//        }
+//        for (int row = 0; row < sizex; row++) {
+//            startboard[row][sizex - 1] = 0;
+//        }
+//        for (int col = 0; col < sizex; col++) {
+//            startboard[sizex - 1][col] = 0;
+//        } //makes edge of zeros
 
 
-        for (int row = 1; row <= sizex - 1; row++) {
-            for (int col = 1; col <= sizex - 1; col++) {
-                startboard[row][col] = (int) ((200 - row * 3) * Math.random() - 50);
+        for (int row = 0; row < sizex; row++) {
+            for (int col = 0; col < sizex; col++) {
+                board[row][col] = (int) ((350 - row * 6) * Math.random() - 50);
             }
         } // makes first board
 
-        for (int smooth = 0; smooth < 7; smooth++) {
+
+
+        for (int smooth = 0; smooth < 4; smooth++) {
             for (int row = 1; row < sizex - 1; row++) {
-                for (int col = 1; col < sizex - 1; col++) {
-                    point1 = startboard[row][col];
-                    point2 = startboard[row - 1][col];
-                    point3 = startboard[row - 1][col + 1];
-                    point4 = startboard[row][col + 1];
-                    point5 = startboard[row + 1][col + 1];
-                    point6 = startboard[row + 1][col];
-                    point7 = startboard[row + 1][col - 1];
-                    point8 = startboard[row][col - 1];
-                    point9 = startboard[row - 1][col - 1];
-                    average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
+                for (int col = 1; col < sizez - 1; col++) {
+                    //point1 = board[row][col];
+                    point2 = board[row - 1][col];
+                    //point3 = board[row - 1][col + 1];
+                    point4 = board[row][col + 1];
+                    //point5 = board[row + 1][col + 1];
+                    point6 = board[row + 1][col];
+                    //point7 = board[row + 1][col - 1];
+                    point8 = board[row][col - 1];
+                    //point9 = board[row - 1][col - 1];
+                    //average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
+                    //average = ( point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 8;
+                    average = ( point2 +  point4 +  point6 +  point8) / 4;
                     board[row][col] = average;
                 }
             } //smooths out board
         }
 
-//        for (int row = 1; row < sizex-1; row++){
-//            for (int col = 1; col < 10; col++){
-//                point1 = board[row][col];
-//                point2 = board[row - 1][col];
-//                point3 = board[row - 1][col + 1];
-//                point4 = board[row][col + 1];
-//                point5 = board[row + 1][col + 1];
-//                point6 = board[row + 1][col];
-//                point7 = board[row + 1][col - 1];
-//                point8 = board[row][col - 1];
-//                point9 = board[row - 1][col - 1];
-//                average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
-//                board[row][col] = average;
-//            }
-//        } //smooths out edges even more
-//        for (int row = 1; row < sizex-1; row++){
-//            for (int col = sizex-9; col < sizex-1; col++){
-//                point1 = board[row][col];
-//                point2 = board[row - 1][col];
-//                point3 = board[row - 1][col + 1];
-//                point4 = board[row][col + 1];
-//                point5 = board[row + 1][col + 1];
-//                point6 = board[row + 1][col];
-//                point7 = board[row + 1][col - 1];
-//                point8 = board[row][col - 1];
-//                point9 = board[row - 1][col - 1];
-//                average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
-//                board[row][col] = average;
-//            }
-//        } //smooths out edges even more
-//        for (int row = 1; row < sizex-1; row++){
-//            for (int col = sizex-9; col < sizex-1; col++){
-//                point1 = board[row][col];
-//                point2 = board[row - 1][col];
-//                point3 = board[row - 1][col + 1];
-//                point4 = board[row][col + 1];
-//                point5 = board[row + 1][col + 1];
-//                point6 = board[row + 1][col];
-//                point7 = board[row + 1][col - 1];
-//                point8 = board[row][col - 1];
-//                point9 = board[row - 1][col - 1];
-//                average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
-//                board[row][col] = average;
-//            }
-//        } //smooths out edges even more
+        // set front and back edges to 0
+        for(int i=0; i<sizez; i++) {
+            board[0][i] = 0;
+            board[sizex-1][i] = 0;
+        }
+
 
         // if board below 0, it's water so set it to 0
         for (int row = 1; row < sizex - 1; row++) {
@@ -174,7 +139,7 @@ public class Landscape extends Canvas {
 
         for (int z = 0; z < sizez; z++) {
             for (int x = 0; x < sizex; x++) {
-                int sx = 30 + x * 8 + z * 6;
+                int sx = 30 + x * 8 + z * 5;
                 int sy = 400 + x * 3 - z * 4;
                 xcoords[x][z] = sx;
                 ycoords[x][z] = sy;
@@ -184,27 +149,30 @@ public class Landscape extends Canvas {
 
         Color c = Color.white;
 
-        for (int z = 0; z < sizez - 1; z++) {
+        for (int z = sizex-2; z>0; z--) {
             for (int x = 0; x < sizex - 1; x++) {
-                for (int count = 0; count < 1; count++) {
-                    if (board[x][z] >= 90) {
-                        c = Color.white;
-                    } else if ((board[x][z] >= 50) && (board[x][z] < 90)) {
-                        c = Color.lightGray;
-                    } else if ((board[x][z] >= 5) && (board[x][z] < 50)) {
-                        c = Color.green;
-                    } else if ((board[x][z] > 0) && (board[x][z] > 5)) {
-                        c = Color.yellow;
-                    } else if (board[x][z] == 0) {
-                        c = Color.blue;
-                    }
+                int totalZ = board[x][z] + board[x+1][z] + board[x+1][z+1] + board[x][z+1];
+                int height = totalZ/4;
+                if (x == 0) {
+                    System.out.println(height);
                 }
-//                if ((x+z) % 2 == 0) {
-//                    c = Color.cyan;
-//                } else {
-//                    c = Color.RED;
-//
-//                }
+                boolean odd =(x+z)%2==0;
+
+                if (height >= 90) {
+                    c = c = odd? new Color(122,122,122) : new Color(100,100,100);
+                } else if ((height >= 35) && (height < 90)) {
+                    c = odd? new Color(192,192,192) : new Color(170,170,170);;
+                } else if ((height >= 20) && (height < 35)) {
+                    c = odd? new Color(0,150,0) : new Color(0,120,0);
+                } else if ((height >= 3) && (height < 35)) {
+                    c = odd? new Color(0,255,0) : new Color(0,225,0);
+                } else if ((height > 0) && (height < 3)) {
+                    c = odd? new Color(255,255,0) : new Color(225,225,0);
+                } else if (height ==  0) {
+                    c = odd? new Color(0,0,255) : new Color(0,0,200);;
+                }
+
+
 
 
                 fillPolygon(g, c,
@@ -212,15 +180,9 @@ public class Landscape extends Canvas {
                         xcoords[x + 1][z], ycoords[x + 1][z],
                         xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
                         xcoords[x][z + 1], ycoords[x][z + 1]);
-//                        xcoords[x][z], ycoords[x][z],
-//                        xcoords[x + 1][z], ycoords[x + 1][z],
-//                        xcoords[x + 1][z + 1], ycoords[x + 1][z + 1],
-//                        xcoords[x][z + 1], ycoords[x][z + 1]);
             }
+
 
         }
     }
 }
-
-
-
