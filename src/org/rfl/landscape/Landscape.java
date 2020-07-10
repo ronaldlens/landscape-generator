@@ -106,8 +106,8 @@ public class Landscape extends Canvas {
 
 
         // if board below 0, it's water so set it to 0
-        for (int row = 1; row < sizex - 1; row++) {
-            for (int col = 1; col < sizex - 1; col++) {
+        for (int row = 0; row < sizex ; row++) {
+            for (int col = 0; col < sizex ; col++) {
                 if (board[row][col] < 0) board[row][col] = 0;
             }
         }
