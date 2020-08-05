@@ -56,46 +56,47 @@ public class Landscape extends Canvas {
         int point8;
         int point9;
         int average;
-//        for (int row = 0; row < sizex; row++) {
-//            startboard[row][0] = 0;
-//        }
-//        for (int col = 0; col < sizex; col++) {
-//            startboard[0][col] = 0;
-//        }
-//        for (int row = 0; row < sizex; row++) {
-//            startboard[row][sizex - 1] = 0;
-//        }
-//        for (int col = 0; col < sizex; col++) {
-//            startboard[sizex - 1][col] = 0;
-//        } //makes edge of zeros
 
 
         for (int row = 0; row < sizex; row++) {
             for (int col = 0; col < sizex; col++) {
-                board[row][col] = (int) ((350 - row * 6) * Math.random() - 50);
+                board[row][col] = (int) ((300 - row * 4) * Math.random() - 75);
             }
         } // makes first board
 
 
+    /*
 
-        for (int smooth = 0; smooth < 4; smooth++) {
-            for (int row = 1; row < sizex - 1; row++) {
-                for (int col = 1; col < sizez - 1; col++) {
-                    //point1 = board[row][col];
-                    point2 = board[row - 1][col];
-                    //point3 = board[row - 1][col + 1];
+       [r,c][ ]
+       [   ][ ]
+
+
+
+     */
+
+
+        for (int smooth = 0; smooth < 6; smooth++) {
+            for (int row = 0; row < sizex - 1; row++) {
+                for (int col = 0; col < sizez - 1; col++) {
+                    point2 = board[row][col];
                     point4 = board[row][col + 1];
-                    //point5 = board[row + 1][col + 1];
                     point6 = board[row + 1][col];
-                    //point7 = board[row + 1][col - 1];
-                    point8 = board[row][col - 1];
-                    //point9 = board[row - 1][col - 1];
-                    //average = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 9;
-                    //average = ( point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9) / 8;
-                    average = ( point2 +  point4 +  point6 +  point8) / 4;
-                    board[row][col] = average;
+                    point8 = board[row + 1][col + 1];
+                    board[row][col] = ( point2 +  point4 +  point6 +  point8) / 4;
+
                 }
             } //smooths out board
+
+//            for (int row = 1; row < sizex; row++) {
+//                for (int col = 1; col < sizez; col++) {
+//                    point2 = board[row][col];
+//                    point4 = board[row][col - 1];
+//                    point6 = board[row - 1][col];
+//                    point8 = board[row - 1][col - 1];
+//                    board[row][col] = ( point2 +  point4 +  point6 +  point8) / 4;
+//
+//                }
+//            }
         }
 
         // set front and back edges to 0
